@@ -68,17 +68,17 @@
 
 // Пример _________________________________________________________________
 // 1. Создаем новый объект XMLHttpRequest
-var xhr = new XMLHttpRequest();
+// var xhr = new XMLHttpRequest();
 // 2. Конфигурируем его: Get-запрос на Url
-xhr.open('GET', 'url', false); // Инициализация, если false - синхронно, по умолч. асинхронно тру
+// xhr.open('GET', 'url', false); // Инициализация, если false - синхронно, по умолч. асинхронно тру
 // 3. Отсылаем запрос
-xhr.send();
+// xhr.send();
 // 4. Если код ответа сервера не 200, то это ошибка
-if (xhr.status != 200) {
-   // Обработать ошибку:
-   console.log(xhr.status + ':' + xhr.statusText); // Пример вывода 404: Not Found
-} else {
-   console.log(xhr.responseText); // Текст ответа
-}
+// if (xhr.status != 200) {
+// Обработать ошибку:
+//    console.log(xhr.status + ':' + xhr.statusText); // Пример вывода 404: Not Found
+// } else {
+//    console.log(xhr.responseText); // Текст ответа
+// }
 
 // Promise _______________________________________________________________________________
