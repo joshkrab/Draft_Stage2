@@ -82,3 +82,189 @@
 // }
 
 // Promise _______________________________________________________________________________
+
+// Лекция по ES6+ ________________________________________________________________________
+console.log(variable);
+var variable = 10;
+console.log(variable);
+
+// console.log(var2); не всплывает при первом проходе компилятора
+let var2 = 11;
+console.log(var2);
+
+for (var i = 0; i < 5; i++) {}
+console.log(i);
+
+for (let i2 = 0; i2 < 5; i2++) {}
+// console.log(i2); let внутри блока не видна снаружи
+
+const a1 = {};
+a1.id = 'hello'; // если конст это объект, то ее можно редактировать без проблем
+console.log(a1);
+
+const var3 = 5;
+// var3 = 10; - выдаст ошибку
+console.log(var3);
+
+// Arrow function
+let fun = (n) => n + 1;
+let bnb = fun(10);
+console.log(bnb);
+
+// Обратные ковычки, передавая в строке что угодно:
+const multiline = `Here can be any function ${(function () {
+   console.log('Hello world');
+})()}`;
+console.log(multiline);
+
+// Destructuring - Деструктуризация - синтаксиз, чтобы вытаскивать значения из массивов/объектов
+// и присваивать сразу переменным
+const arr = [1, 2, 3, 4];
+const [a, , b, c] = arr; //Объявление переменных а,б,с и присвоение им значений из массива выше
+console.log(a, b, c);
+
+let obj = { e: 1, f: 2, g: 3 };
+let { e, f, h } = obj;
+console.log(e, f, h); // тк h нет, то выведет undefine но не ошибку
+
+// Spread operator - розделяет, Rest operator - отделяет всё что осталось
+const [head, ...tail] = [1, 2, 3, 4, 5];
+console.log(head, tail);
+
+let { f2, ...rest } = { a3: 4, f2: 6, u: 9 };
+console.log(f2, rest);
+
+// Default values
+function sum(a = 1, b = 3) {
+   return a + b;
+}
+console.log(sum(4));
+
+// rest operator as вместо аргументов
+function sum2(...vals) {
+   console.log(typeof vals);
+   return vals;
+}
+
+console.log(sum2(1, 2, 3, 4));
+
+// Класс - более продвинутый конструктор объектов, вместо конструктора функций
+// с возможностями ООП, создает шаблон объектов
+// Сделано по подобию других языков в ООП (почему именно класс называется и синтаксис)
+class User {
+   constructor(name) {
+      this.name = name; //заданный аргумент сохраняет в this.name
+   }
+   // методы класса сохраняются в User.prototype:
+   sayHi() {
+      console.log(this.name);
+   }
+}
+
+// Использование:
+let user = new User('Иван');
+user.sayHi();
+console.log(typeof User); // Класс это функция
+// ...или, если точнее, это метод constructor
+console.log(User === User.prototype.constructor); // true
+// Методы находятся в User.prototype, например:
+console.log(User.prototype.sayHi);
+console.log(user.sayHi);
+
+// в прототипе ровно 2 метода
+console.log(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
+
+// get & set _________________________________
+let user2 = {
+   name: 'John',
+   surname: 'Smith',
+
+   get fullName() {
+      return `${this.name} ${this.surname}`;
+   },
+
+   set fullName(value) {
+      [this.name, this.surname] = value.split(' ');
+   },
+};
+// При обращении к свойству выведет get
+console.log(user2.fullName);
+
+// set fullName запустится с данным значением - перезапишет значение свойства
+user2.fullName = 'Alice Cooper';
+console.log(user2.fullName);
+
+console.log(user2.name); // Alice
+console.log(user2.surname); // Cooper
+
+// Пример работы классов _________________________________________________
+class Animal {
+   constructor(name, lags) {
+      this.name = name;
+      this.lags = lags;
+   }
+   describe() {
+      return `${this.name} has ${this.lags} lags`;
+   }
+}
+
+class Cat extends Animal {
+   constructor(name) {
+      // вызов родительского конструктора.
+      super(name, 4);
+   }
+   // Ключевое слово super используется для вызова функций, принадлежащих родителю объекта.
+   describe() {
+      return `${super.describe()} and says meow`;
+   }
+}
+
+let cat = new Cat('Tom');
+console.log(cat.describe());
+
+// Пример с гет/сет ____________________________________
+const person = {
+   age: 5,
+   get myAge() {
+      return this.age;
+   },
+   set myAge(age) {
+      this.age = age;
+   },
+};
+
+console.log(person.myAge);
+person.myAge = 25;
+console.log(person.myAge);
+
+// ___________________________________________________________________
+for (let char of 'Hello') {
+   console.log(char); // Выведет каждую букву
+}
+
+// Generators - функции, которые не выполняются сразу, а возвращают объект
+// Выполнение можно приостановить и потом возобновить
+function* getFunc() {
+   yield 'a';
+   yield 'b';
+}
+
+console.log(getFunc());
+
+let fibonacci = {
+   *[Symbol.iterator]() {
+      let pre = 0,
+         cur = 1;
+      for (;;) {
+         [pre, cur] = [cur, pre + cur];
+         yield cur;
+      }
+   },
+};
+
+for (let n of fibonacci) {
+   if (n > 10) break;
+   console.log(n);
+}
+
+// Map - объект с меньшими ограничениями по типу данных в именах ключей
