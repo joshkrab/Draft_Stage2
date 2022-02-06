@@ -161,4 +161,6 @@ img {
 .item-d {
    grid-area: footer;
    background-color: rgb(102, 78, 78);
+   margin: 0px 0px 0px 0px;
+   padding: 0px 0px 0px 0px;
 }

@@ -185,7 +185,7 @@ let user2 = {
 
    set fullName(value) {
       [this.name, this.surname] = value.split(' ');
-   },
+   }
 };
 // При обращении к свойству выведет get
 console.log(user2.fullName);
@@ -230,7 +230,7 @@ const person = {
    },
    set myAge(age) {
       this.age = age;
-   },
+   }
 };
 
 console.log(person.myAge);
@@ -259,7 +259,7 @@ let fibonacci = {
          [pre, cur] = [cur, pre + cur];
          yield cur;
       }
-   },
+   }
 };
 
 for (let n of fibonacci) {
