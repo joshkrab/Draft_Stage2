@@ -1,3 +1,5 @@
+// Урок по книге, т.к. лекции не было
+
 window.onload = init;
 function init() {
    console.log('check it');
