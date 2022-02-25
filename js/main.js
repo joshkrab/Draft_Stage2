@@ -174,7 +174,7 @@ console.log(user.sayHi);
 // в прототипе ровно 2 метода
 console.log(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
 
-// get & set _________________________________
+// get & set _________________________________________________________________________________
 let user2 = {
    name: 'John',
    surname: 'Smith',
@@ -185,7 +185,7 @@ let user2 = {
 
    set fullName(value) {
       [this.name, this.surname] = value.split(' ');
-   }
+   },
 };
 // При обращении к свойству выведет get
 console.log(user2.fullName);
@@ -197,7 +197,7 @@ console.log(user2.fullName);
 console.log(user2.name); // Alice
 console.log(user2.surname); // Cooper
 
-// Пример работы классов _________________________________________________
+// Пример работы классов __________________________________________________________________
 class Animal {
    constructor(name, lags) {
       this.name = name;
@@ -230,7 +230,7 @@ const person = {
    },
    set myAge(age) {
       this.age = age;
-   }
+   },
 };
 
 console.log(person.myAge);
@@ -259,7 +259,7 @@ let fibonacci = {
          [pre, cur] = [cur, pre + cur];
          yield cur;
       }
-   }
+   },
 };
 
 for (let n of fibonacci) {
